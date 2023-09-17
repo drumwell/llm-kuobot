@@ -5,10 +5,10 @@ REPO_DIR = Path(os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..')))
 
 # Text extraction
-url = 'https://dash.harvard.edu/bitstream/handle/1/41128206/KUO-DISSERTATION-2018.pdf?sequence=1&isAllowed=y'
+url = 'https://dash.harvard.edu/bitstream/handle/1/41128206/KUO-DISSERTATION-2018.pdf'
 header_height = 60  # Main text distance from the top of the page: to remove header
 footer_height = 540  # Remove footer
-start_page = 45
+start_page = 4
 end_page = 450
 extraction_path = REPO_DIR / "llm/data/extracted_text.jsonl"
 
@@ -17,7 +17,6 @@ min_length = 100
 
 # HF repo
 hf_repo = "drumwell/llm-kuobot"
-hf_hub = "drumwell/kuobot"
 
 # Dataset
 context_length = 2048
