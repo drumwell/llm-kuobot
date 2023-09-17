@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def prepare_dataset(dataset_path: Path, min_length: int, context_length: int,
-                    test_size: float, shuffle: bool, hf_repo: str, hf_hub: str) -> None:
+                    test_size: float, shuffle: bool, hf_repo: str) -> None:
     """Prepare dataset for training and push it to the hub.
     """
     tokenizer = AutoTokenizer.from_pretrained(config.model_name)
@@ -23,7 +23,7 @@ def prepare_dataset(dataset_path: Path, min_length: int, context_length: int,
                            min_length=min_length, tokenizer=tokenizer)
     dataset = Dataset.from_dict({'text': [text]})
     # We push the extracted book publicly
-    dataset.push_to_hub(hf_hub)
+    dataset.push_to_hub(hf_repo)
     tokenized_dataset = dataset.map(tokenize, batched=True, fn_kwargs={'tokenizer': tokenizer, 'context_length': context_length},
                                     remove_columns=dataset.column_names)
     LOGGER.info(
@@ -82,6 +82,5 @@ if __name__ == '__main__':
         context_length=config.context_length,
         test_size=config.test_size,
         shuffle=config.shuffle,
-        hf_repo=config.hf_repo,
-        hf_hub=config.hf_hub
+        hf_repo=config.hf_repo
     )
