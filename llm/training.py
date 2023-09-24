@@ -50,7 +50,7 @@ class LLMKuo():
         trainer.train()
         model.config.use_cache = True
         model.push_to_hub(repo_id=hf_repo)
-        tokenizer.push_to_hub(repo_id=hf_repo)
+        # tokenizer.push_to_hub(repo_id=hf_repo)
 
     def evaluate():
         pass
